@@ -2,13 +2,13 @@ import Foundation
 final class StatisticService {
     private let storage: UserDefaults = .standard
     private enum Keys: String {
-            case correctAnswers
-            case totalQuestions
-            case gamesCount
-            case bestGameCorrect = "bestGame.correct"
-            case bestGameTotal   = "bestGame.total"
-            case bestGameDate    = "bestGame.date"
-        }
+        case correctAnswers
+        case totalQuestions
+        case gamesCount
+        case bestGameCorrect = "bestGame.correct"
+        case bestGameTotal   = "bestGame.total"
+        case bestGameDate    = "bestGame.date"
+    }
 }
 extension StatisticService: StatisticServiceProtocol {
     var totalAccuracy: Double {
@@ -29,13 +29,13 @@ extension StatisticService: StatisticServiceProtocol {
             let total = storage.integer(forKey: Keys.bestGameTotal.rawValue)
             let date = storage.object(forKey: Keys.bestGameDate.rawValue) as? Date ?? Date()
             return GameResult(correct: correct, total: total, date: date)
-               }
-               set {
-                storage.set(newValue.correct, forKey: Keys.bestGameCorrect.rawValue)
-                storage.set(newValue.total,   forKey: Keys.bestGameTotal.rawValue)
-                storage.set(newValue.date,    forKey: Keys.bestGameDate.rawValue)
-               }
-           }
+        }
+        set {
+            storage.set(newValue.correct, forKey: Keys.bestGameCorrect.rawValue)
+            storage.set(newValue.total,   forKey: Keys.bestGameTotal.rawValue)
+            storage.set(newValue.date,    forKey: Keys.bestGameDate.rawValue)
+        }
+    }
     func store(correct count: Int, total amount: Int){
         gamesCount += 1
         let prevCorrect = storage.integer(forKey: Keys.correctAnswers.rawValue)
