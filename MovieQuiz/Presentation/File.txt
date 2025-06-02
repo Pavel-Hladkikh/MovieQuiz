@@ -1,0 +1,3 @@
+self.imageView.image       = viewModel.image       
+    self.textLabel.text        = viewModel.question    
+    self.counterLabel.text     = viewModel.questionNumber
