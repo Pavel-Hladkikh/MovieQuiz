@@ -6,8 +6,8 @@ final class StatisticService {
         case totalQuestions
         case gamesCount
         case bestGameCorrect = "bestGame.correct"
-        case bestGameTotal   = "bestGame.total"
-        case bestGameDate    = "bestGame.date"
+        case bestGameTotal = "bestGame.total"
+        case bestGameDate = "bestGame.date"
     }
 }
 extension StatisticService: StatisticServiceProtocol {
@@ -32,8 +32,8 @@ extension StatisticService: StatisticServiceProtocol {
         }
         set {
             storage.set(newValue.correct, forKey: Keys.bestGameCorrect.rawValue)
-            storage.set(newValue.total,   forKey: Keys.bestGameTotal.rawValue)
-            storage.set(newValue.date,    forKey: Keys.bestGameDate.rawValue)
+            storage.set(newValue.total, forKey: Keys.bestGameTotal.rawValue)
+            storage.set(newValue.date, forKey: Keys.bestGameDate.rawValue)
         }
     }
     func store(correct count: Int, total amount: Int){
