@@ -56,16 +56,16 @@ final class QuestionFactory: QuestionFactoryProtocol {
                 }
                 return
             }
-            var imageData = Data()
-            do {
-                imageData = try Data(contentsOf: movie.resizedImageURL)
-            } catch {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.delegate?.didFailToLoadData(with: error)
-                }
-                return
-            }
+            let imageData: Data
+                    do {
+                        imageData = try Data(contentsOf: movie.resizedImageURL)
+                    } catch {
+                        DispatchQueue.main.async { [weak self] in
+                            self?.delegate?.didFailToLoadData(with: error)
+                        }
+                        return
+                  }
+
             let ratingValue = Float(movie.rating) ?? 0
             let text = "Рейтинг этого фильма больше чем 7?"
             let correctAnswer = ratingValue > 7
